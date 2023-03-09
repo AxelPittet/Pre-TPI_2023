@@ -9,6 +9,9 @@ if (isset($_GET['action'])) {
         case 'home' :
             home();
             break;
+        case 'showPlates' :
+            home();
+            break;
         default :
             home();
     }
