@@ -10,7 +10,7 @@ if (isset($_GET['action'])) {
             home();
             break;
         case 'showPlates' :
-            home();
+            showPlates();
             break;
         default :
             home();

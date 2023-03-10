@@ -5,3 +5,8 @@ function home()
 {
     require "view/home.php";
 }
+
+function showPlates()
+{
+    require "view/home.php";
+}
