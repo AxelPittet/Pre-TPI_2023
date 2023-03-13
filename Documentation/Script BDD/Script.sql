@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `Restolerance`.`users` (
   `firstname` VARCHAR(80) NOT NULL,
   `email` VARCHAR(255) NOT NULL,
   `phonenumber` VARCHAR(15) NOT NULL,
-  `password` VARCHAR(60) NOT NULL,
+  `password` VARCHAR(60) NOT NULL,users
   `usertype` INT NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `UniqueUser` (`email` ASC) VISIBLE)
