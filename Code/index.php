@@ -12,6 +12,12 @@ if (isset($_GET['action'])) {
         case 'showPlates' :
             showPlates();
             break;
+        case 'register' :
+            register($_POST);
+            break;
+        case 'login' :
+
+            break;
         default :
             home();
     }
