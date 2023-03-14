@@ -38,10 +38,10 @@
                         <li><a>Intolerances</a></li>
                         <li><a>Precedent orders</a></li>
                         <li><a>Logout</a></li>
+                        <li><a href="index.php?action=logout">Logout</a></li>
                     </ul>
                 </li>
                 <?php else: ?>
-                <li><a>Login</a></li>
                 <li><a href="index.php?action=login">Login</a></li>
                 <li><a href="index.php?action=register">Register</a></li>
                 <?php endif; ?>

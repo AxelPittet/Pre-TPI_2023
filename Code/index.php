@@ -18,6 +18,9 @@ if (isset($_GET['action'])) {
         case 'login' :
             login($_POST);
             break;
+        case 'logout' :
+            logout();
+            break;
             break;
         default :
             home();

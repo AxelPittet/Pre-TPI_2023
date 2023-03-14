@@ -75,6 +75,14 @@ function login($loginRequest)
         require "view/login.php";
     }
 }
+
+// Fonction qui permet de se déconnecter de la session ouverte
+function logout()
+{
+    session_destroy();
+    header('LOCATION:/home');
+}
+
 // Fonction qui permet de créer une nouvelle session
 function createSession($userEmailAddress, $userType)
 {
