@@ -33,7 +33,6 @@ function getUserType($userEmailAddress) {
 
     require_once 'model/dbconnector.php';
     $queryResult = executeQuerySelect($getUserTypeQuery);
-    //echo $getUserTypeQuery;
 
     if (count($queryResult) == 1) {
         $result = $queryResult[0]['userType'];
@@ -41,3 +40,41 @@ function getUserType($userEmailAddress) {
 
     return $result;
 }
+
+/**
+ * @param $userEmailAddress
+ * @param $userPsw
+ * @return bool
+ */
+function isLoginCorrect($userEmailAddress, $userPsw)
+{
+    $result = false;
+
+    $strSeparator = '\'';
+    $loginQuery = 'SELECT * FROM users WHERE email = ' . $strSeparator . $userEmailAddress . $strSeparator;
+
+    require_once 'model/dbConnector.php';
+    $queryResult = executeQuerySelect($loginQuery);
+
+    if (count($queryResult) == 1) {
+        $userHashPsw = $queryResult[0]['password'];
+        if (password_verify($userPsw, $userHashPsw) == true) {
+            $result = true;
+        } else {
+            $result = false;
+        }
+    } else {
+        $result = false;
+    }
+
+    return $result;
+}
+
+/**
+ * @param $userEmailAddress
+ * @param $userPsw
+ * @param $userName
+ * @param $userFirstName
+ * @param $userNumberPhone
+ * @return bool|null
+ */

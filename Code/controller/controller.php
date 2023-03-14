@@ -18,7 +18,7 @@ function showPlates()
 function register($registerRequest)
 {
 //if a register request was submitted
-    if (isset($registerRequest['inputUserEmailAddress']) && isset($registerRequest['inputUserPsw']) && isset($registerRequest['inputUserPswRepeat'])
+    if (isset($registerRequest['inputUserEmailAddress']) && isset($registerRequest['inputUserPsw']) && isset($registerRequest['inputUserConfirmPsw'])
         && isset($registerRequest['inputUserFirstName']) && isset($registerRequest['inputUserLastName']) && isset($registerRequest['inputUserPhoneNumber'])) {
 
         $userFirstName = $registerRequest ['inputUserFirstName'];
@@ -26,9 +26,9 @@ function register($registerRequest)
         $userPhoneNumber = $registerRequest ['inputUserPhoneNumber'];
         $userEmailAddress = $registerRequest['inputUserEmailAddress'];
         $userPsw = $registerRequest['inputUserPsw'];
-        $userPswRepeat = $registerRequest['inputUserPswRepeat'];
+        $userConfirmPsw = $registerRequest['inputUserConfirmPsw'];
 
-        if ($userPsw == $userPswRepeat) {
+        if ($userPsw == $userConfirmPsw) {
             require_once "model/usersManager.php";
             if (registerNewAccount($userEmailAddress, $userPsw, $userFirstName, $userLastName, $userPhoneNumber)) {
                 $userType = getUserType($userEmailAddress);
@@ -49,6 +49,32 @@ function register($registerRequest)
     }
 }
 
+// Fonction qui permet de connecter avec un les informations d'un utilisateurs déjà créé
+/**
+ * @param array $loginRequest
+ */
+function login($loginRequest)
+{
+//if a login request was submitted
+    if (isset($loginRequest['inputUserEmailAddress']) && isset($loginRequest['inputUserPsw'])) {
+        //extract login parameters
+        $userEmailAddress = $loginRequest['inputUserEmailAddress'];
+        $userPsw = $loginRequest['inputUserPsw'];
+        //try to check if user/psw are matching with the database
+        require_once "model/usersManager.php";
+        if (isLoginCorrect($userEmailAddress, $userPsw)) {
+            $userType = getUserType($userEmailAddress);
+            createSession($userEmailAddress, $userType);
+            $_GET['loginError'] = false;
+            require "view/home.php";
+        } else { //if the user/psw does not match, login form appears again
+            $_GET['loginError'] = true;
+            require "view/login.php";
+        }
+    } else { //the user does not yet fill the form
+        require "view/login.php";
+    }
+}
 // Fonction qui permet de créer une nouvelle session
 function createSession($userEmailAddress, $userType)
 {

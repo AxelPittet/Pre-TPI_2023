@@ -42,6 +42,7 @@
                 </li>
                 <?php else: ?>
                 <li><a>Login</a></li>
+                <li><a href="index.php?action=login">Login</a></li>
                 <li><a href="index.php?action=register">Register</a></li>
                 <?php endif; ?>
             </ul>
