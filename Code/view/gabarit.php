@@ -24,7 +24,7 @@
                     </div>
                 </li>
                 <li tabindex="1">
-                    <a>
+                    <a href="index.php?action=intolerances">
                         <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                             <div class="w-10 rounded-full">
                                 <img src="view/img/Default_pfp.png"/>
@@ -35,9 +35,8 @@
                         </svg>
                     </a>
                     <ul class="p-2 bg-base-100">
-                        <li><a>Intolerances</a></li>
-                        <li><a>Precedent orders</a></li>
-                        <li><a>Logout</a></li>
+                        <li><a href="index.php?action=intolerances">Intolerances</a></li>
+                        <li><a href="index.php?action=precedentsOrders">Precedent orders</a></li>
                         <li><a href="index.php?action=logout">Logout</a></li>
                     </ul>
                 </li>

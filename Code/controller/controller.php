@@ -89,3 +89,10 @@ function createSession($userEmailAddress, $userType)
     $_SESSION['userEmailAddress'] = $userEmailAddress;
     $_SESSION['userType'] = $userType;
 }
+
+function intolerances($intolerancesRequest){
+
+    require_once "model/intolerancesManager.php";
+    $intolerances = getIntolerances();
+    require "view/intolerances.php";
+}

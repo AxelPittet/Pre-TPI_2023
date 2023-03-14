@@ -21,6 +21,8 @@ if (isset($_GET['action'])) {
         case 'logout' :
             logout();
             break;
+        case 'intolerances' :
+            intolerances($_POST);
             break;
         default :
             home();
