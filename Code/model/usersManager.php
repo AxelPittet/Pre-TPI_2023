@@ -1,13 +1,5 @@
 <?php
 
-/**
- * @param $userEmailAddress
- * @param $userPsw
- * @param $userFirstName
- * @param $userLastName
- * @param $userPhoneNumber
- * @return bool|null
- */
 function registerNewAccount($userEmailAddress, $userPsw, $userFirstName, $userLastName, $userPhoneNumber)
 {
 
@@ -20,11 +12,6 @@ function registerNewAccount($userEmailAddress, $userPsw, $userFirstName, $userLa
     return $registerResult;
 }
 
-
-/**
- * @param $userEmailAddress
- * @return int|mixed
- */
 function getUserType($userEmailAddress) {
     $result = 1;
 
@@ -41,11 +28,6 @@ function getUserType($userEmailAddress) {
     return $result;
 }
 
-/**
- * @param $userEmailAddress
- * @param $userPsw
- * @return bool
- */
 function isLoginCorrect($userEmailAddress, $userPsw)
 {
     $result = false;
@@ -70,11 +52,18 @@ function isLoginCorrect($userEmailAddress, $userPsw)
     return $result;
 }
 
-/**
- * @param $userEmailAddress
- * @param $userPsw
- * @param $userName
- * @param $userFirstName
- * @param $userNumberPhone
- * @return bool|null
- */
+function getUserId($userEmailAddress) {
+    $result = 1;
+
+    $strSeparator = '\'';
+    $getUserIdQuery = 'SELECT id FROM users WHERE email =' . $strSeparator . $userEmailAddress . $strSeparator;
+
+    require_once 'model/dbconnector.php';
+    $queryResult = executeQuerySelect($getUserIdQuery);
+
+    if (count($queryResult) == 1) {
+        $result = $queryResult[0]['id'];
+    }
+
+    return $result;
+}

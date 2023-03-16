@@ -90,9 +90,35 @@ function createSession($userEmailAddress, $userType)
     $_SESSION['userType'] = $userType;
 }
 
-function intolerances($intolerancesRequest){
+function intolerances($intolerancesRequest)
+{
 
-    require_once "model/intolerancesManager.php";
-    $intolerances = getIntolerances();
-    require "view/intolerances.php";
+    if (!empty($intolerancesRequest)) {
+        foreach ($intolerancesRequest as $intoleranceRequest) {
+            require_once "model/usersManager.php";
+            $userId = getUserId($_SESSION['userEmailAddress']);
+
+            if ($intoleranceRequest == 'on'){
+                require_once "model/intolerancesManager.php";
+                if (saveUserIntolerance($userId,10)){
+                    require "view/home.php";
+                }
+            } else {
+                require_once "model/intolerancesManager.php";
+                if (deleteUserIntolerance($userId,2)){
+                    require "view/home.php";
+                }
+            }
+            require "view/home.php";
+        }
+
+    } else {
+        require_once "model/usersManager.php";
+        $userId = getUserId($_SESSION['userEmailAddress']);
+        require_once "model/intolerancesManager.php";
+        $intolerances = getIntolerances();
+        $userIntolerances = getUserIntolerances($userId);
+        require "view/intolerances.php";
+    }
+
 }
