@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `Restolerance`.`users` (
   `firstname` VARCHAR(80) NOT NULL,
   `email` VARCHAR(255) NOT NULL,
   `phonenumber` VARCHAR(15) NOT NULL,
-  `password` VARCHAR(60) NOT NULL,users
+  `password` VARCHAR(60) NOT NULL,
   `usertype` INT NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `UniqueUser` (`email` ASC) VISIBLE)
@@ -146,6 +146,25 @@ CREATE TABLE IF NOT EXISTS `Restolerance`.`plates_contain_orders` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Datas `Restolerance`.`intolerances`
+-- -----------------------------------------------------
+INSERT INTO intolerances (id, name) VALUES (1, 'Dairy'),
+ (2, 'Gluten'),
+ (3, 'Caffeine'),
+ (4, 'Salicylates'),
+ (5, 'Amines'),
+ (6, 'FODMAPs'),
+ (7, 'Sulfites'),
+ (8, 'Fructose'),
+ (9, 'Aspartame'),
+ (10, 'Eggs'),
+ (11, 'MSG'),
+ (12, 'Food colorings'),
+ (13, 'Yeast'),
+ (14, 'Sugar alcohols');
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
