@@ -97,15 +97,14 @@ function intolerances($intolerancesRequest)
         foreach ($intolerancesRequest as $intoleranceRequest) {
             require_once "model/usersManager.php";
             $userId = getUserId($_SESSION['userEmailAddress']);
+            require_once "model/intolerancesManager.php";
 
-            if ($intoleranceRequest == 'on'){
-                require_once "model/intolerancesManager.php";
-                if (saveUserIntolerance($userId,10)){
+            if ($intoleranceRequest[1] == 'on'){
+                if (saveUserIntolerance($userId,$intoleranceRequest[0])){
                     require "view/home.php";
                 }
             } else {
-                require_once "model/intolerancesManager.php";
-                if (deleteUserIntolerance($userId,2)){
+                if (deleteUserIntolerance($userId,$intoleranceRequest[0])){
                     require "view/home.php";
                 }
             }
