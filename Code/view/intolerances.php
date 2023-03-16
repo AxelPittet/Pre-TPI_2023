@@ -34,12 +34,13 @@ ob_start();
                     <div class="grid h-10 w-full card bg-base-300 rounded-box">
                         <label class="label cursor-pointer">
                             <span class="label-text"><?= $intolerance['name'] ?></span>
+                            <input type='hidden' value='<?= $intolerance['id'] ?>' name='inputIntolerance<?= $intolerance['id'] ?>[]'>
                             <input type="checkbox" class="checkbox checkbox-primary"
-                                   name="inputIntolerance<?= $intolerance['id'] ?>"
+                                   name="inputIntolerance<?= $intolerance['id'] ?>[]"
                                    <?php foreach ($userIntolerances
 
-                                   as $userIntolerance) : if ($userIntolerance['intolerance_id'] == $intolerance['id']) : ?>value="on" checked<?php else: ?> content="off" onsubmit=""
-                            <?php endif;
+                                   as $userIntolerance) : if ($userIntolerance['intolerance_id'] == $intolerance['id']) : ?>value="on"
+                                   checked<?php endif;
                             endforeach;
                             ?>/>
                         </label>
