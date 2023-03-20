@@ -98,18 +98,12 @@ function intolerances($intolerancesRequest)
             require_once "model/usersManager.php";
             $userId = getUserId($_SESSION['userEmailAddress']);
             require_once "model/intolerancesManager.php";
-
-            if ($intoleranceRequest[1] == 'on'){
-                if (saveUserIntolerance($userId,$intoleranceRequest[0])){
-                    require "view/home.php";
-                }
-            } else {
-                if (deleteUserIntolerance($userId,$intoleranceRequest[0])){
-                    require "view/home.php";
-                }
+            deleteUserIntolerance($userId, $intoleranceRequest[0]);
+            if (isset($intoleranceRequest[1])) {
+                saveUserIntolerance($userId, $intoleranceRequest[0]);
             }
-            require "view/home.php";
         }
+        home();
 
     } else {
         require_once "model/usersManager.php";
