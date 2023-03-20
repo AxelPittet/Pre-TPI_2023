@@ -3,12 +3,14 @@
 // Fonction qui permet d'afficher la page "home"
 function home()
 {
+    require_once "model/platesManager.php";
+    $plates = getPlates();
     require "view/home.php";
 }
 
 function showPlates()
 {
-    require "view/home.php";
+    home();
 }
 
 // Fonction qui permet de créer un nouvel utilisateur
@@ -34,7 +36,7 @@ function register($registerRequest)
                 $userType = getUserType($userEmailAddress);
                 createSession($userEmailAddress, $userType);
                 $registerErrorMessage = null;
-                require "view/home.php";
+                home();
             } else {
                 $registerErrorMessage = "L'inscription n'est pas possible avec les valeurs saisies !";
                 require "view/register.php";
@@ -66,7 +68,7 @@ function login($loginRequest)
             $userType = getUserType($userEmailAddress);
             createSession($userEmailAddress, $userType);
             $_GET['loginError'] = false;
-            require "view/home.php";
+            home();
         } else { //if the user/psw does not match, login form appears again
             $_GET['loginError'] = true;
             require "view/login.php";
