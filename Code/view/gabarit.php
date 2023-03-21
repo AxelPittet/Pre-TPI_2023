@@ -1,17 +1,17 @@
 <?php
 /**
-* author : Axel Pittet
-* project : Pre-TPI 2023 - Res'Tolerances
-* date : 21.03.2023
-*/
+ * author : Axel Pittet
+ * project : Pre-TPI 2023 - Res'Tolerances
+ * date : 21.03.2023
+ */
 
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="utf-8">
-    <meta name = "author" content = "Axel Pittet">
-    <meta name = "description" content = "This page is the gabarit of the site">
+    <meta name="author" content="Axel Pittet">
+    <meta name="description" content="This page is the gabarit of the site">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/view/css/output.css" rel="stylesheet">
     <title>Res'Tolerances</title>
@@ -28,31 +28,32 @@
         <div class="flex-none">
             <ul class="menu menu-horizontal px-1">
                 <?php if (isset($_SESSION['userEmailAddress'])) : ?>
-                <li>
-                    <div class="form-control">
-                        <input type="text" placeholder="Search" class="input input-bordered"/>
-                    </div>
-                </li>
-                <li tabindex="1">
-                    <a href="index.php?action=intolerances">
-                        <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-                            <div class="w-10 rounded-full">
-                                <img src="view/img/Default_pfp.png"/>
-                            </div>
-                        </label>
-                        <svg class="fill-current" width="20" height="20" viewBox="0 0 24 24">
-                            <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
-                        </svg>
-                    </a>
-                    <ul class="p-2 bg-base-100">
-                        <li><a href="index.php?action=intolerances">Intolerances</a></li>
-                        <li><a href="index.php?action=precedentsOrders">Precedent orders</a></li>
-                        <li><a href="index.php?action=logout">Logout</a></li>
-                    </ul>
-                </li>
+                    <li>
+                        <div class="form-control">
+                            <input type="text" placeholder="Search" class="input input-bordered"/>
+                        </div>
+                    </li>
+                    <li tabindex="1">
+                        <a href="index.php?action=intolerances">
+                            <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+                                <div class="w-10 rounded-full">
+                                    <img src="view/img/Default_pfp.png"/>
+                                </div>
+                            </label>
+                            <svg class="fill-current" width="20" height="20" viewBox="0 0 24 24">
+                                <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
+                            </svg>
+                        </a>
+                        <ul class="p-2 bg-base-100">
+                            <li><a href="index.php?action=intolerances">Intolerances</a></li>
+                            <li><a href="index.php?action=precedentsOrders">Precedent orders</a></li>
+                            <li><a href="index.php?action=logout">Logout</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">Check order</a></li>
                 <?php else: ?>
-                <li><a href="index.php?action=login">Login</a></li>
-                <li><a href="index.php?action=register">Register</a></li>
+                    <li><a href="index.php?action=login">Login</a></li>
+                    <li><a href="index.php?action=register">Register</a></li>
                 <?php endif; ?>
             </ul>
         </div>

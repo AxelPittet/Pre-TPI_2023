@@ -43,7 +43,7 @@ ob_start();
                             <h2 class="card-title"><?= $plate['name'] ?></h2>
                             <p><?= $plate['description'] ?></p>
                             <div class="card-actions justify-end">
-                                <button class="btn btn-primary">Order Now !</button>
+                                <a href="index.php?action=showPlate&plateId=<?= $plate['id'] ?>"><button class="btn btn-primary">Order Now !</button></a>
                             </div>
                         </div>
                     </div>
