@@ -57,3 +57,9 @@ function deleteUserIntolerance ($userId, $intoleranceId){
     return $deleteUserIntoleranceResult;
 }
 
+function getPlatesIntolerances(){
+    $query = "SELECT * FROM plates_contain_intolerances";
+    require_once "model/dbconnector.php";
+    $platesIntolerances = executeQuerySelect($query);
+    return $platesIntolerances;
+}

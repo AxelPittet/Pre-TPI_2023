@@ -12,8 +12,14 @@
  */
 function home()
 {
+    require_once "model/usersManager.php";
+    $userId = getUserId($_SESSION['userEmailAddress']);
     require_once "model/platesManager.php";
     $plates = getPlates();
+    require_once "model/intolerancesManager.php";
+    $userIntolerances = getUserIntolerances($userId);
+    $platesIntolerances = getPlatesIntolerances();
+
     require "view/home.php";
 }
 
@@ -146,7 +152,6 @@ function showPlate()
     $plateId = $_GET['plateId'];
     require_once "model/platesManager.php";
     $plates = getPlates();
-
 
     require "view/plate.php";
 }

@@ -17,4 +17,3 @@ function getPlates()
     $intolerances = executeQuerySelect($getIntolerancesQuery);
     return $intolerances;
 }
-
