@@ -1,4 +1,9 @@
 <?php
+/**
+ * author : Axel Pittet
+ * project : Pre-TPI 2023 - Res'Tolerances
+ * date : 21.03.2023
+ */
 
 session_start();
 require "controller/controller.php";

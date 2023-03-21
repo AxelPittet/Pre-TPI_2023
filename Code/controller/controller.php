@@ -1,6 +1,15 @@
 <?php
+/**
+ * author : Axel Pittet
+ * project : Pre-TPI 2023 - Res'Tolerances
+ * date : 21.03.2023
+ */
 
-// Fonction qui permet d'afficher la page "home"
+
+/**
+ * This function is designed to display the "home" view
+ * @return void
+ */
 function home()
 {
     require_once "model/platesManager.php";
@@ -13,9 +22,10 @@ function showPlates()
     home();
 }
 
-// Fonction qui permet de créer un nouvel utilisateur
 /**
- * @param array $registerRequest
+ * This function is designed to register a new user.
+ * @param $registerRequest : all values must be set and both passwords must be the same for the register to work. If passwords are not the same or the email is already exisiting, it will display an error message. If the values aren't all set, it will display the register form.
+ * @return void
  */
 function register($registerRequest)
 {
@@ -51,9 +61,10 @@ function register($registerRequest)
     }
 }
 
-// Fonction qui permet de connecter avec un les informations d'un utilisateurs déjà créé
 /**
- * @param array $loginRequest
+ * This function is designed to log in an exisiting user.
+ * @param $loginRequest : all values must be set and must match with a user in the database for the user to be logged in. If it does not match, it will display an error message. If all the values aren't set, it will display the login form.
+ * @return void
  */
 function login($loginRequest)
 {
@@ -78,20 +89,33 @@ function login($loginRequest)
     }
 }
 
-// Fonction qui permet de se déconnecter de la session ouverte
+/**
+ * This function is designed to log out a user by resetting the $_SESSION variable
+ * @return void
+ */
 function logout()
 {
     session_destroy();
     header('LOCATION:/home');
 }
 
-// Fonction qui permet de créer une nouvelle session
+/**
+ * This function is designed create a session for a user after a login or register
+ * @param $userEmailAddress : must contain the email that was used to log in or register
+ * @param $userType : must contain an int which is equal to 1 if this is a normal user or 2 if this is an admin
+ * @return void
+ */
 function createSession($userEmailAddress, $userType)
 {
     $_SESSION['userEmailAddress'] = $userEmailAddress;
     $_SESSION['userType'] = $userType;
 }
 
+/**
+ * This function is designed to save the intolerances choices of the user.
+ * @param $intolerancesRequest : must be set for the choices of the user to be save. If the parameter is not set, it will display the intolerances form.
+ * @return void
+ */
 function intolerances($intolerancesRequest)
 {
 

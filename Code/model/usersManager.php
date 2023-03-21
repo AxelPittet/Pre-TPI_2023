@@ -1,5 +1,20 @@
 <?php
+/**
+ * author : Axel Pittet
+ * project : Pre-TPI 2023 - Res'Tolerances
+ * date : 21.03.2023
+ */
 
+
+/**
+ * This function is designed to register a new user account in the database
+ * @param $userEmailAddress
+ * @param $userPsw
+ * @param $userFirstName
+ * @param $userLastName
+ * @param $userPhoneNumber
+ * @return bool|null
+ */
 function registerNewAccount($userEmailAddress, $userPsw, $userFirstName, $userLastName, $userPhoneNumber)
 {
 
@@ -12,6 +27,11 @@ function registerNewAccount($userEmailAddress, $userPsw, $userFirstName, $userLa
     return $registerResult;
 }
 
+/**
+ * This function is designed to return the type of the user which is currently logged in
+ * @param $userEmailAddress
+ * @return int|mixed : get the values of the query result
+ */
 function getUserType($userEmailAddress) {
     $result = 1;
 
@@ -28,6 +48,12 @@ function getUserType($userEmailAddress) {
     return $result;
 }
 
+/**
+ * This function is designed to check if the values of the login form are matching with an exisiting user
+ * @param $userEmailAddress
+ * @param $userPsw
+ * @return bool
+ */
 function isLoginCorrect($userEmailAddress, $userPsw)
 {
     $result = false;
@@ -52,6 +78,11 @@ function isLoginCorrect($userEmailAddress, $userPsw)
     return $result;
 }
 
+/**
+ * This function is designed to return the id of the user which is currently logged in.
+ * @param $userEmailAddress
+ * @return int|mixed : get the values of the query result
+ */
 function getUserId($userEmailAddress) {
     $result = 1;
 

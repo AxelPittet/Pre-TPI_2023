@@ -1,10 +1,20 @@
+<?php
+/**
+* author : Axel Pittet
+* project : Pre-TPI 2023 - Res'Tolerances
+* date : 21.03.2023
+*/
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="utf-8">
+    <meta name = "author" content = "Axel Pittet">
+    <meta name = "description" content = "This page is the gabarit of the site">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/view/css/output.css" rel="stylesheet">
-    <title>Restaurant</title>
+    <title>Res'Tolerances</title>
 </head>
 
 <body>
