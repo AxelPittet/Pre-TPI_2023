@@ -14,9 +14,6 @@ if (isset($_GET['action'])) {
         case 'home' :
             home();
             break;
-        case 'showPlates' :
-            showPlates();
-            break;
         case 'register' :
             register($_POST);
             break;
@@ -28,6 +25,9 @@ if (isset($_GET['action'])) {
             break;
         case 'intolerances' :
             intolerances($_POST);
+            break;
+        case 'showPlate' :
+            showPlate();
             break;
         default :
             home();

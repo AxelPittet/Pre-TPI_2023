@@ -17,11 +17,6 @@ function home()
     require "view/home.php";
 }
 
-function showPlates()
-{
-    home();
-}
-
 /**
  * This function is designed to register a new user.
  * @param $registerRequest : all values must be set and both passwords must be the same for the register to work. If passwords are not the same or the email is already exisiting, it will display an error message. If the values aren't all set, it will display the register form.
@@ -140,4 +135,18 @@ function intolerances($intolerancesRequest)
         require "view/intolerances.php";
     }
 
+}
+
+/**
+ * This function is designed to display the information of the plate that the user clicked on it
+ * @return void
+ */
+function showPlate()
+{
+    $plateId = $_GET['plateId'];
+    require_once "model/platesManager.php";
+    $plates = getPlates();
+
+
+    require "view/plate.php";
 }
