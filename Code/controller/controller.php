@@ -152,6 +152,9 @@ function showPlate()
     $plateId = $_GET['plateId'];
     require_once "model/platesManager.php";
     $plates = getPlates();
+    require_once "model/intolerancesManager.php";
+    $intolerances = getIntolerances();
+    $platesIntolerances = getPlatesIntolerances();
 
     require "view/plate.php";
 }
