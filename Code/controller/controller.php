@@ -158,3 +158,11 @@ function showPlate()
 
     require "view/plate.php";
 }
+
+/**
+ * This function is designed to display the cart of the user
+ * @return void
+ */
+function cart(){
+    require "view/cart.php";
+}

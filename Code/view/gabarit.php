@@ -50,7 +50,7 @@
                             <li><a href="index.php?action=logout">Logout</a></li>
                         </ul>
                     </li>
-                    <li><a href="">Check order</a></li>
+                    <li><a href="index.php?action=cart">Check order</a></li>
                 <?php else: ?>
                     <li><a href="index.php?action=login">Login</a></li>
                     <li><a href="index.php?action=register">Register</a></li>

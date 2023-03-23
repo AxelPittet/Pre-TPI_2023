@@ -19,6 +19,11 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="PhpServers">
+    <servers>
+      <server host="localhost" id="30491735-1aad-4e15-a693-b5ea20e0233f" name="localhost" port="9004" />
+    </servers>
+  </component>
   <component name="ProjectId" id="2Mdms9ZotHJDgD6c63sctQWfGTQ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -64,6 +69,7 @@
       <workItem from="1679385631707" duration="8575000" />
       <workItem from="1679396280897" duration="1000" />
       <workItem from="1679396884575" duration="5302000" />
+      <workItem from="1679564124282" duration="4628000" />
     </task>
     <servers />
   </component>

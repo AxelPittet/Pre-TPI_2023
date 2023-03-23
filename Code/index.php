@@ -29,6 +29,9 @@ if (isset($_GET['action'])) {
         case 'showPlate' :
             showPlate();
             break;
+        case 'cart' :
+            cart();
+            break;
         default :
             home();
     }
