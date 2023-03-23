@@ -167,6 +167,18 @@ INSERT INTO intolerances (id, name) VALUES (1, 'Dairy'),
  (14, 'Sugar alcohols');
 
 
+-- -----------------------------------------------------
+-- Datas `Restolerance`.`plates`
+-- -----------------------------------------------------
+INSERT INTO plates (id, name, description, price, image) VALUES (1, 'Tagliatelles au boeuf', 'Ce délicieux plat de tagliatelles vous sera servi accompagné de ses petits morceaux de viande ainsi que ses quelques légumes.', 25.00, 'view/img/pates.jpg'),
+(2, 'Riz frit indonésien aux légumes', 'Le Nasi Goreng, un plat typique d’Indonésie, aussi appelé Riz Frit. Il est complet avec le riz, les légumes et la protéine.', 28.00, 'view/img/riz.jpg'),
+(3, 'Couscous', 'Ce couscous, d’origine marocaine, est ici accompagné de viande de mouton, de la semoule de blé et un choix varié de légumes et de légumineuses.', 31.00, 'view/img/couscous.jpg'),
+(4, 'Filets de perche meunières', 'Les filets de perche, incontournable des poissons, vous sont servis accompagnés de leur delicieuse sauce tartare, légumes, ainsi qu’une portion de frites.', 29.00, 'view/img/filetsDePerche.jpg'),
+(5, 'Paëlla', 'Ce plat traditionnel espagnol, est la description même du plat de fête. Concu à l’aide de nombreux aliments tel que du riz, des fruits de mer et sa dose de légumes sains nous ne pouvons que vous conseiller de l’essayer !', 32.00, 'view(img/paella.jpg'),
+(6, 'Feijoada', 'La feijoada est un plat très populaire particulièrement au Brésil et au Portugal. Elle consiste en un ragoût de haricots noirs, servi avec de la viande et du riz blanc.', 26.00, 'view/img/feijoada.jpg'),
+(7, 'Bortsch', 'Le bortsch, est un potage nous venant des pays slaves. Il contient, chez nous, de la betterave, du chou, des carrotes, des pommes de terre et des oignons.', 25.00, 'view/img/bortsch.jpg');
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
