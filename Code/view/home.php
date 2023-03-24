@@ -29,6 +29,7 @@ ob_start();
                 <?php
                 $count = 0;
                 $plateCantBeDisplayed = 0;
+                $plateAlreadyDisplayed = 0;
 
                 foreach ($plates as $plate) :
                     foreach ($platesIntolerances as $plateIntolerances) :
@@ -39,7 +40,8 @@ ob_start();
                                         $plateCantBeDisplayed = 1;
                                     }
                                 endforeach;
-                                if ($plateCantBeDisplayed != 1) :
+                                if ($plateCantBeDisplayed != 1 && $plateAlreadyDisplayed != 1) :
+                                    $plateAlreadyDisplayed = 1;
                                     $count += 1;
                                     if ($count == 1) :
                                         ?>
@@ -71,7 +73,7 @@ ob_start();
                                     <?php endif;
                                 endif;
                                 $plateCantBeDisplayed = 0;
-                            else:
+                            elseif ($plateAlreadyDisplayed != 1):
                                 $count += 1;
                                 if ($count == 1) :
                                     ?>
@@ -104,6 +106,7 @@ ob_start();
                             endif;
                         endif;
                     endforeach;
+                    $plateAlreadyDisplayed = 0;
                 endforeach;
                 if ($count != 0) : ?>
             </div>

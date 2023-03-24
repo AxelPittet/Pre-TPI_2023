@@ -13,7 +13,9 @@
 function home()
 {
     require_once "model/usersManager.php";
-    $userId = getUserId($_SESSION['userEmailAddress']);
+    if (isset($_SESSION['userEmailAddress'])){
+        $userId = getUserId($_SESSION['userEmailAddress']);
+    }
     require_once "model/platesManager.php";
     $plates = getPlates();
     require_once "model/intolerancesManager.php";

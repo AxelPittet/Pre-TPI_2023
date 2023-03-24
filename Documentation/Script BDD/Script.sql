@@ -10,7 +10,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema Restolerance
 -- -----------------------------------------------------
-
+DROP DATABASE IF EXISTS `Restolerance`;
 -- -----------------------------------------------------
 -- Schema Restolerance
 -- -----------------------------------------------------
@@ -164,19 +164,35 @@ INSERT INTO intolerances (id, name) VALUES (1, 'Dairy'),
  (11, 'MSG'),
  (12, 'Food colorings'),
  (13, 'Yeast'),
- (14, 'Sugar alcohols');
+ (14, 'Sugar alcohols'),
+ (15, 'Vegan');
 
 
 -- -----------------------------------------------------
 -- Datas `Restolerance`.`plates`
 -- -----------------------------------------------------
 INSERT INTO plates (id, name, description, price, image) VALUES (1, 'Tagliatelles au boeuf', 'Ce délicieux plat de tagliatelles vous sera servi accompagné de ses petits morceaux de viande ainsi que ses quelques légumes.', 25.00, 'view/img/pates.jpg'),
-(2, 'Riz frit indonésien aux légumes', 'Le Nasi Goreng, un plat typique d’Indonésie, aussi appelé Riz Frit. Il est complet avec le riz, les légumes et la protéine.', 28.00, 'view/img/riz.jpg'),
+(2, 'Riz frit indonésien aux légumes', 'Le Nasi Goreng, un plat typique d’Indonésie, aussi appelé Riz Frit. Il est complet avec du riz, légumes et protéines.', 28.00, 'view/img/riz.jpg'),
 (3, 'Couscous', 'Ce couscous, d’origine marocaine, est ici accompagné de viande de mouton, de la semoule de blé et un choix varié de légumes et de légumineuses.', 31.00, 'view/img/couscous.jpg'),
 (4, 'Filets de perche meunières', 'Les filets de perche, incontournable des poissons, vous sont servis accompagnés de leur delicieuse sauce tartare, légumes, ainsi qu’une portion de frites.', 29.00, 'view/img/filetsDePerche.jpg'),
-(5, 'Paëlla', 'Ce plat traditionnel espagnol, est la description même du plat de fête. Concu à l’aide de nombreux aliments tel que du riz, des fruits de mer et sa dose de légumes sains nous ne pouvons que vous conseiller de l’essayer !', 32.00, 'view(img/paella.jpg'),
+(5, 'Paëlla', 'Ce plat traditionnel espagnol, est la description même du plat de fête. Concu à l’aide de nombreux aliments tel que du riz, des fruits de mer et sa dose de légumes sains. Nous ne pouvons que vous conseiller de l’essayer !', 32.00, 'view/img/paella.jpg'),
 (6, 'Feijoada', 'La feijoada est un plat très populaire particulièrement au Brésil et au Portugal. Elle consiste en un ragoût de haricots noirs, servi avec de la viande et du riz blanc.', 26.00, 'view/img/feijoada.jpg'),
 (7, 'Bortsch', 'Le bortsch, est un potage nous venant des pays slaves. Il contient, chez nous, de la betterave, du chou, des carrotes, des pommes de terre et des oignons.', 25.00, 'view/img/bortsch.jpg');
+
+
+-- -----------------------------------------------------
+-- Datas `Restolerance`.`plates_contain_intolerances`
+-- -----------------------------------------------------
+INSERT INTO plates_contain_intolerances (id, plate_id, intolerance_id) VALUES (1, 1, 2),
+(2, 1, 15),
+(3, 2, 15),
+(4, 3, 15),
+(5, 4, 7),
+(6, 4, 15),
+(7, 5, 4),
+(8, 5, 15),
+(9, 6, 6),
+(10, 6, 15);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
