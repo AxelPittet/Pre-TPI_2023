@@ -29,84 +29,57 @@ ob_start();
                 <?php
                 $count = 0;
                 $plateCantBeDisplayed = 0;
-                $plateAlreadyDisplayed = 0;
+                $userGotNoIntolerances = 0;
 
                 foreach ($plates as $plate) :
-                    foreach ($platesIntolerances as $plateIntolerances) :
-                        if ($plate['id'] == $plateIntolerances['plate_id']) :
-                            if ($userIntolerances[0] != null) :
-                                foreach ($userIntolerances as $userIntolerance) :
+                    foreach ($platesIntolerances as $plateIntolerances) {
+                        if ($plate['id'] == $plateIntolerances['plate_id']) {
+                            if (isset($userIntolerances[0])) {
+                                foreach ($userIntolerances as $userIntolerance) {
                                     if ($plateIntolerances['intolerance_id'] == $userIntolerance['intolerance_id']) {
                                         $plateCantBeDisplayed = 1;
                                     }
-                                endforeach;
-                                if ($plateCantBeDisplayed != 1 && $plateAlreadyDisplayed != 1) :
-                                    $plateAlreadyDisplayed = 1;
-                                    $count += 1;
-                                    if ($count == 1) :
-                                        ?>
-                                        <div class="flex w-full">
-                                    <?php
-                                    endif;
-                                    ?>
-                                    <div class="card card-compact w-full bg-base-100 shadow-xl">
-                                        <figure><img src="<?= $plate['image'] ?>" alt="<?= $plate['name'] ?>"
-                                                     class=""/>
-                                        </figure>
-                                        <div class="card-body">
-                                            <h2 class="card-title"><?= $plate['name'] ?></h2>
-                                            <p><?= $plate['description'] ?></p>
-                                            <div class="card-actions justify-end">
-                                                <a href="index.php?action=showPlate&plateId=<?= $plate['id'] ?>">
-                                                    <button class="btn btn-primary">Order Now !</button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="divider-horizontal"></div>
-                                    <?php
-                                    if ($count == 3) :
-                                        $count = 0;
-                                        ?>
-                                        </div>
-                                        <div class="divider-vertical"></div>
-                                    <?php endif;
-                                endif;
-                                $plateCantBeDisplayed = 0;
-                            elseif ($plateAlreadyDisplayed != 1):
-                                $count += 1;
-                                if ($count == 1) :
-                                    ?>
-                                    <div class="flex w-full">
-                                <?php
-                                endif;
-                                ?>
-                                <div class="card card-compact w-full bg-base-100 shadow-xl">
-                                    <figure><img src="<?= $plate['image'] ?>" alt="<?= $plate['name'] ?>"
-                                                 class=""/>
-                                    </figure>
-                                    <div class="card-body">
-                                        <h2 class="card-title"><?= $plate['name'] ?></h2>
-                                        <p><?= $plate['description'] ?></p>
-                                        <div class="card-actions justify-end">
-                                            <a href="index.php?action=showPlate&plateId=<?= $plate['id'] ?>">
-                                                <button class="btn btn-primary">Order Now !</button>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="divider-horizontal"></div>
-                                <?php
-                                if ($count == 3) :
-                                    $count = 0;
-                                    ?>
-                                    </div>
-                                    <div class="divider-vertical"></div>
-                                <?php endif;
-                            endif;
+                                }
+                            } else {
+                                $userGotNoIntolerances = 1;
+                            }
+                        }
+                    }
+
+                    if (($plateCantBeDisplayed != 1 && $userGotNoIntolerances == 0) || ($userGotNoIntolerances == 1)) :
+                        $count += 1;
+                        if ($count == 1) :
+                            ?>
+                            <div class="flex w-full">
+                        <?php
                         endif;
-                    endforeach;
-                    $plateAlreadyDisplayed = 0;
+                        ?>
+                        <div class="card card-compact w-full bg-base-100 shadow-xl">
+                            <figure><img src="<?= $plate['image'] ?>" alt="<?= $plate['name'] ?>"
+                                         class=""/>
+                            </figure>
+                            <div class="card-body">
+                                <h2 class="card-title"><?= $plate['name'] ?></h2>
+                                <p><?= $plate['description'] ?></p>
+                                <div class="card-actions justify-end">
+                                    <a href="index.php?action=showPlate&plateId=<?= $plate['id'] ?>">
+                                        <button class="btn btn-primary">Order Now !</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="divider-horizontal"></div>
+                        <?php
+                        if ($count == 3) :
+                            $count = 0;
+                            ?>
+                            </div>
+                            <div class="divider-vertical"></div>
+                        <?php endif;
+                    endif;
+                    $plateCantBeDisplayed = 0;
+                    $plateNumberOfIntolerances = 0;
+                    $userGotNoIntolerances = 0;
                 endforeach;
                 if ($count != 0) : ?>
             </div>
