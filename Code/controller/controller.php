@@ -13,7 +13,7 @@
 function home()
 {
     require_once "model/usersManager.php";
-    if (isset($_SESSION['userEmailAddress'])){
+    if (isset($_SESSION['userEmailAddress'])) {
         $userId = getUserId($_SESSION['userEmailAddress']);
     }
     require_once "model/platesManager.php";
@@ -165,7 +165,8 @@ function showPlate()
  * This function is designed to display the cart of the user
  * @return void
  */
-function cart(){
+function cart()
+{
     require "view/cart.php";
 }
 
@@ -201,4 +202,19 @@ function addToCart($addToCartRequest)
     }
 }
 
+/**
+ * This function is designed to remove a specific plate from the cart of the user
+ * @return void
+ */
+function removeFromCart()
+{
+    if (!empty($_SESSION['cartItem'])) {
+        foreach ($_SESSION['cartItem'] as $k => $v) {
+            if ($_GET['plateId'] == $k)
+                unset($_SESSION['cartItem'][$k]);
+            if (empty($_SESSION['cartItem']))
+                unset($_SESSION['cartItem']);
+        }
+        cart();
+    }
 }
