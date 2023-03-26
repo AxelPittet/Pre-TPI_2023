@@ -2,7 +2,7 @@
 /**
  * author : Axel Pittet
  * project : Pre-TPI 2023 - Res'Tolerances
- * date : 21.03.2023
+ * date : 26.03.2023
  */
 
 session_start();
@@ -37,6 +37,9 @@ if (isset($_GET['action'])) {
             break;
         case 'removeFromCart' :
             removeFromCart();
+            break;
+        case 'confirmOrder' :
+            confirmOrder();
             break;
         default :
             home();

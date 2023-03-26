@@ -2,7 +2,7 @@
 /**
  * author : Axel Pittet
  * project : Pre-TPI 2023 - Res'Tolerances
- * date : 23.03.2023
+ * date : 26.03.2023
  */
 
 ob_start();
@@ -39,7 +39,7 @@ ob_start();
                                 <td><?= $plate['price'] . " CHF" ?></td>
                                 <td><?= $plate['quantity'] ?></td>
                                 <td><?= number_format($platePrice, 2) . " CHF" ?></td>
-                                <td><a href="index.php?action=removeFromCart&plateId=<?= $plate['id'] ?>"
+                                <td><a href="index.php?action=removeFromCart&plateName=<?= $plate['name'] ?>"
                                        class="btn btn-circle bg-base-100"><img src="view/img/delete.png"
                                                                                alt="deleteImg"></a></td>
                             </tr>
@@ -57,14 +57,18 @@ ob_start();
                         </tr>
                         </tfoot>
                     </table>
+                <?php else: ?>
+                    <h1 class="text-3xl">Your cart is empty !</h1>
                 <?php endif; ?>
             </div>
             <div class="divider-vertical"></div>
-            <a>
-                <button class="btn btn-primary">Order</button>
-            </a>
-
-
+            <?php
+            if (isset($_SESSION['cartItem'])):
+                ?>
+                <a href="index.php?action=confirmOrder">
+                    <button class="btn btn-primary">Order</button>
+                </a>
+            <?php endif; ?>
         </div>
     </div>
 </div>

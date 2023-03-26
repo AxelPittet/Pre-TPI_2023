@@ -2,7 +2,7 @@
 /**
  * author : Axel Pittet
  * project : Pre-TPI 2023 - Res'Tolerances
- * date : 21.03.2023
+ * date : 26.03.2023
  */
 
 
@@ -180,12 +180,12 @@ function addToCart($addToCartRequest)
     if (!empty($addToCartRequest['plateQuantity'])) {
         require_once "model/platesManager.php";
         $specificPlate = getSpecificPlate($_GET['plateId']);
-        $specificPlateArray = array($specificPlate[0]['id'] => array('id' => $specificPlate[0]['id'], 'name' => $specificPlate[0]['name'], 'quantity' => $addToCartRequest['plateQuantity'], 'price' => $specificPlate[0]['price']));
+        $specificPlateArray = array($specificPlate[0]['name'] => array('id' => $specificPlate[0]['id'], 'name' => $specificPlate[0]['name'], 'quantity' => $addToCartRequest['plateQuantity'], 'price' => $specificPlate[0]['price']));
 
         if (!empty($_SESSION['cartItem'])) {
-            if (in_array($specificPlate[0]['id'], array_keys($_SESSION['cartItem']))) {
+            if (in_array($specificPlate[0]['name'], array_keys($_SESSION['cartItem']))) {
                 foreach ($_SESSION['cartItem'] as $k => $v) {
-                    if ($specificPlate[0]['id'] == $k) {
+                    if ($specificPlate[0]['name'] == $k) {
                         if (empty($_SESSION['cartItem'][$k]['quantity'])) {
                             $_SESSION['cartItem'][$k]['quantity'] = 0;
                         }
@@ -210,11 +210,30 @@ function removeFromCart()
 {
     if (!empty($_SESSION['cartItem'])) {
         foreach ($_SESSION['cartItem'] as $k => $v) {
-            if ($_GET['plateId'] == $k)
+            if ($_GET['plateName'] == $k)
                 unset($_SESSION['cartItem'][$k]);
             if (empty($_SESSION['cartItem']))
                 unset($_SESSION['cartItem']);
         }
         cart();
     }
+}
+
+
+function confirmOrder(){
+    require_once "model/usersManager.php";
+    $userId = getUserId($_SESSION['userEmailAddress']);
+    require_once "model/ordersManager.php";
+    saveOrder($userId);
+
+    //foreach item
+
+    $msg = "First line of text\nSecond line of text";
+
+    $msg = wordwrap($msg,70);
+
+    mail($_SESSION['userEmailAddress'],"Confirmation de commande n°X",$msg);
+
+    unset($_SESSION['cartItem']);
+    home();
 }
