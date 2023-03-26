@@ -12,8 +12,17 @@
  */
 function getPlates()
 {
-    $getIntolerancesQuery = "SELECT * FROM plates";
+    $getPlatesQuery = "SELECT * FROM plates";
     require_once "model/dbconnector.php";
-    $intolerances = executeQuerySelect($getIntolerancesQuery);
-    return $intolerances;
+    $plates = executeQuerySelect($getPlatesQuery);
+    return $plates;
+}
+
+
+function getSpecificPlate($plateId)
+{
+    $getSpecificPlateId = "SELECT * FROM plates WHERE id = '$plateId'";
+    require_once "model/dbconnector.php";
+    $specificPlate = executeQuerySelect($getSpecificPlateId);
+    return $specificPlate;
 }
