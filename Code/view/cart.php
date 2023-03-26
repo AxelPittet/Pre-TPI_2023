@@ -14,48 +14,50 @@ ob_start();
             <h1 class="text-5xl font-bold">Cart</h1>
             <div class="divider"></div>
             <div class="overflow-x-auto">
-                <table class="table w-full">
-                    <!-- head -->
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Total price</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <!-- row 1 -->
-                    <tr>
-                        <th>Plate 1</th>
-                        <td>20</td>
-                        <td>1</td>
-                        <td>20</td>
-                    </tr>
-                    <!-- row 2 -->
-                    <tr>
-                        <th>Plate 2</th>
-                        <td>15</td>
-                        <td>2</td>
-                        <td>30</td>
-                    </tr>
-                    <!-- row 3 -->
-                    <tr>
-                        <th>Plate 3</th>
-                        <td>22</td>
-                        <td>1</td>
-                        <td>22</td>
-                    </tr>
-                    </tbody>
-                    <tfoot>
-                    <tr>
-                        <th>Final Price</th>
-                        <td></td>
-                        <td></td>
-                        <th>72 CHF</th>
-                    </tr>
-                    </tfoot>
-                </table>
+                <?php
+                if (isset($_SESSION['cartItem'])):
+                    $totalPrice = 0;
+                    ?>
+                    <table class="table w-full">
+                        <!-- head -->
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total price</th>
+                            <th>Remove</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        foreach ($_SESSION['cartItem'] as $plate):
+                            $platePrice = $plate['quantity'] * $plate['price'];
+                            ?>
+                            <tr>
+                                <th><?= $plate['name'] ?></th>
+                                <td><?= $plate['price'] . " CHF" ?></td>
+                                <td><?= $plate['quantity'] ?></td>
+                                <td><?= number_format($platePrice, 2) . " CHF" ?></td>
+                                <td><a href="index.php?action=removeFromCart&plateId=<?= $plate['id'] ?>"
+                                       class="btn btn-circle bg-base-100"><img src="view/img/delete.png"
+                                                                               alt="deleteImg"></a></td>
+                            </tr>
+                            <?php
+                            $totalPrice += ($plate['quantity'] * $plate['price']);
+                        endforeach;
+                        ?>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th>Total Price</th>
+                            <td></td>
+                            <td></td>
+                            <th><?= number_format($totalPrice, 2) . " CHF" ?></th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                <?php endif; ?>
             </div>
             <div class="divider-vertical"></div>
             <a>
