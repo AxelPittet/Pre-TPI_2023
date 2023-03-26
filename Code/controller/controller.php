@@ -168,3 +168,37 @@ function showPlate()
 function cart(){
     require "view/cart.php";
 }
+
+/**
+ * This function is designed to add a specific plate to the cart of the user
+ * @param $addToCartRequest : must contain the quantity of the plate that the user want to add to the cart
+ * @return void
+ */
+function addToCart($addToCartRequest)
+{
+    if (!empty($addToCartRequest['plateQuantity'])) {
+        require_once "model/platesManager.php";
+        $specificPlate = getSpecificPlate($_GET['plateId']);
+        $specificPlateArray = array($specificPlate[0]['id'] => array('id' => $specificPlate[0]['id'], 'name' => $specificPlate[0]['name'], 'quantity' => $addToCartRequest['plateQuantity'], 'price' => $specificPlate[0]['price']));
+
+        if (!empty($_SESSION['cartItem'])) {
+            if (in_array($specificPlate[0]['id'], array_keys($_SESSION['cartItem']))) {
+                foreach ($_SESSION['cartItem'] as $k => $v) {
+                    if ($specificPlate[0]['id'] == $k) {
+                        if (empty($_SESSION['cartItem'][$k]['quantity'])) {
+                            $_SESSION['cartItem'][$k]['quantity'] = 0;
+                        }
+                        $_SESSION['cartItem'][$k]['quantity'] += $addToCartRequest['plateQuantity'];
+                    }
+                }
+            } else {
+                $_SESSION['cartItem'] = array_merge($_SESSION['cartItem'], $specificPlateArray);
+            }
+        } else {
+            $_SESSION['cartItem'] = $specificPlateArray;
+        }
+        cart();
+    }
+}
+
+}

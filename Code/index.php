@@ -32,6 +32,9 @@ if (isset($_GET['action'])) {
         case 'cart' :
             cart();
             break;
+        case 'addToCart' :
+            addToCart($_POST);
+            break;
         default :
             home();
     }
