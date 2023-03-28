@@ -41,6 +41,9 @@ if (isset($_GET['action'])) {
         case 'confirmOrder' :
             confirmOrder();
             break;
+        case 'precedentsOrders' :
+            precedentsOrders();
+            break;
         default :
             home();
     }

@@ -2,7 +2,7 @@
 /**
  * author : Axel Pittet
  * project : Pre-TPI 2023 - Res'Tolerances
- * date : 26.03.2023
+ * date : 27.03.2023
  */
 
 
@@ -219,21 +219,43 @@ function removeFromCart()
     }
 }
 
-
+/**
+ * This function is designed to confirm an order of a user by saving it in the DB and sending a confirmation mail
+ * @return void
+ */
 function confirmOrder(){
     require_once "model/usersManager.php";
     $userId = getUserId($_SESSION['userEmailAddress']);
     require_once "model/ordersManager.php";
-    saveOrder($userId);
+    $orderId = saveOrder($userId);
 
-    //foreach item
+    foreach ($_SESSION['cartItem'] as $k => $v) {
+        saveOrderContent($_SESSION['cartItem'][$k]['quantity'], $_SESSION['cartItem'][$k]['id'], $orderId);
+    }
 
     $msg = "First line of text\nSecond line of text";
 
     $msg = wordwrap($msg,70);
 
-    mail($_SESSION['userEmailAddress'],"Confirmation de commande n°X",$msg);
+    mail($_SESSION['userEmailAddress'],"Confirmation de commande n°$orderId",$msg);
 
     unset($_SESSION['cartItem']);
-    home();
+    precedentsOrders();
+}
+
+/**
+ * This function is designed to display the precedents orders the user has done
+ * @return void
+ */
+function precedentsOrders(){
+    if (empty($_GET['orderId'])) {
+        require_once "model/usersManager.php";
+        $userId = getUserId($_SESSION['userEmailAddress']);
+        require_once "model/ordersManager.php";
+        $ordersId = getUserOrdersId($userId);
+
+        require "view/precedentsOrders.php";
+    } else {
+
+    }
 }

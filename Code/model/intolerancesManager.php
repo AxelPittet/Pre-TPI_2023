@@ -2,7 +2,7 @@
 /**
  * author : Axel Pittet
  * project : Pre-TPI 2023 - Res'Tolerances
- * date : 21.03.2023
+ * date : 27.03.2023
  */
 
 
@@ -57,6 +57,10 @@ function deleteUserIntolerance ($userId, $intoleranceId){
     return $deleteUserIntoleranceResult;
 }
 
+/**
+ * This function is designed to return the values of the plates_contain_intolerances table in the database
+ * @return array|null : get the values of the query result
+ */
 function getPlatesIntolerances(){
     $query = "SELECT * FROM plates_contain_intolerances";
     require_once "model/dbconnector.php";

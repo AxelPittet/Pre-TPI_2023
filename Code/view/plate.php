@@ -32,7 +32,7 @@ foreach ($plates as $plate) :
                                     if ($plate['id'] == $plateIntolerances['plate_id']) :
                                         foreach ($intolerances as $intolerance) :
                                             if ($intolerance['id'] == $plateIntolerances['intolerance_id']) :
-                                                echo $intolerance['name'];
+                                                echo $intolerance['name']." ";
                                             endif;
                                         endforeach;
                                     endif;

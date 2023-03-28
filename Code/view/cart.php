@@ -2,13 +2,17 @@
 /**
  * author : Axel Pittet
  * project : Pre-TPI 2023 - Res'Tolerances
- * date : 26.03.2023
+ * date : 27.03.2023
  */
 
 ob_start();
 ?>
 
 <div class="hero min-h-screen bg-base-200">
+    <div class="divider-vertical"></div>
+    <div class="divider-vertical"></div>
+    <div class="divider-vertical"></div>
+    <div class="divider-vertical"></div>
     <div class="hero-content text-center">
         <div class="w-screen">
             <h1 class="text-5xl font-bold">Cart</h1>
@@ -19,7 +23,6 @@ ob_start();
                     $totalPrice = 0;
                     ?>
                     <table class="table w-full">
-                        <!-- head -->
                         <thead>
                         <tr>
                             <th>Name</th>
@@ -58,7 +61,7 @@ ob_start();
                         </tfoot>
                     </table>
                 <?php else: ?>
-                    <h1 class="text-3xl">Your cart is empty !</h1>
+                    <p class="text-2xl">Your cart is empty !</p>
                 <?php endif; ?>
             </div>
             <div class="divider-vertical"></div>
@@ -72,7 +75,10 @@ ob_start();
         </div>
     </div>
 </div>
-
+<div class="divider-vertical"></div>
+<div class="divider-vertical"></div>
+<div class="divider-vertical"></div>
+<div class="divider-vertical"></div>
 
 <?php
 $content = ob_get_clean();

@@ -2,7 +2,7 @@
 /**
  * author : Axel Pittet
  * project : Pre-TPI 2023 - Res'Tolerances
- * date : 21.03.2023
+ * date : 27.03.2023
  */
 
 ?>
@@ -28,16 +28,17 @@
         <div class="flex-none">
             <ul class="menu menu-horizontal px-1">
                 <?php if (isset($_SESSION['userEmailAddress'])) : ?>
+                <!-- Not implemented>
                     <li>
                         <div class="form-control">
                             <input type="text" placeholder="Search" class="input input-bordered"/>
                         </div>
-                    </li>
+                    </li> -->
                     <li tabindex="1">
                         <a href="index.php?action=intolerances">
                             <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                                 <div class="w-10 rounded-full">
-                                    <img src="view/img/Default_pfp.png"/>
+                                    <img src="view/img/defaultPFP.png"/>
                                 </div>
                             </label>
                             <svg class="fill-current" width="20" height="20" viewBox="0 0 24 24">
