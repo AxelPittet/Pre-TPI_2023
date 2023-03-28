@@ -2,7 +2,7 @@
 /**
  * author : Axel Pittet
  * project : Pre-TPI 2023 - Res'Tolerances
- * date : 21.03.2023
+ * date : 28.03.2023
  */
 
 
@@ -42,7 +42,7 @@ function getUserType($userEmailAddress) {
     $queryResult = executeQuerySelect($getUserTypeQuery);
 
     if (count($queryResult) == 1) {
-        $result = $queryResult[0]['userType'];
+        $result = $queryResult[0]['usertype'];
     }
 
     return $result;
@@ -139,5 +139,14 @@ function updateUser($userEmailAddress, $userFirstName, $userLastName, $userPhone
     return $result;
 }
 
+/**
+ * This function is designed to delete the values of a specific row in the users table in the database
+ * @param $userEmailAddress
+ * @return bool|null
+ */
+function deleteUser($userEmailAddress){
+    $deleteUserQuery = "DELETE FROM users WHERE email = '$userEmailAddress'";
+    require_once "model/dbconnector.php";
+    $result = executeQueryIUD($deleteUserQuery);
     return $result;
 }
