@@ -123,5 +123,21 @@ function getUser($userEmailAddress){
     return $user;
 }
 
+/**
+ * This function is designed to update the values of a specific row in the users table in the database
+ * @param $userEmailAddress
+ * @param $userFirstName
+ * @param $userLastName
+ * @param $userPhoneNumber
+ * @param $userId
+ * @return bool|null
+ */
+function updateUser($userEmailAddress, $userFirstName, $userLastName, $userPhoneNumber, $userId){
+    $updateUserQuery = "UPDATE users SET lastname='$userLastName', firstname = '$userFirstName', email = '$userEmailAddress', phonenumber = '$userPhoneNumber' WHERE id = '$userId'";
+    require_once "model/dbconnector.php";
+    $result = executeQueryIUD($updateUserQuery);
+    return $result;
+}
+
     return $result;
 }
