@@ -165,7 +165,7 @@ INSERT INTO intolerances (id, name) VALUES (1, 'Dairy'),
  (12, 'Food colorings'),
  (13, 'Yeast'),
  (14, 'Sugar alcohols'),
- (15, 'Vegan');
+ (15, 'Meat / Fish');
 
 
 -- -----------------------------------------------------
@@ -193,6 +193,12 @@ INSERT INTO plates_contain_intolerances (id, plate_id, intolerance_id) VALUES (1
 (8, 5, 15),
 (9, 6, 6),
 (10, 6, 15);
+
+
+-- -----------------------------------------------------
+-- Datas `Restolerance`.`users`
+-- -----------------------------------------------------
+INSERT INTO users (id, lastname, firstname, email, phonenumber, `password`, usertype) VALUES (1, 'CPNV', 'Admin', 'admin@cpnv.ch', '079 123 45 67', '$2y$10$9sjEd.sORgZSdJ0wzA73ZOb0flLU.U5l1mqQ1H3wyd7suimXctPnO', '2'); 
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

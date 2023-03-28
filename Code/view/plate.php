@@ -28,11 +28,16 @@ foreach ($plates as $plate) :
                             <h6>Probables intolerances</h6>
                             <p class="py-4">
                                 <?php
+                                $count = 0;
                                 foreach ($platesIntolerances as $plateIntolerances) :
                                     if ($plate['id'] == $plateIntolerances['plate_id']) :
                                         foreach ($intolerances as $intolerance) :
                                             if ($intolerance['id'] == $plateIntolerances['intolerance_id']) :
-                                                echo $intolerance['name']." ";
+                                                if ($count != 0){
+                                                    echo " - ";
+                                                }
+                                                echo $intolerance['name'];
+                                                $count += 1;
                                             endif;
                                         endforeach;
                                     endif;

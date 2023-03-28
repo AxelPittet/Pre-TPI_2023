@@ -56,6 +56,9 @@
                     <li><a href="index.php?action=login">Login</a></li>
                     <li><a href="index.php?action=register">Register</a></li>
                 <?php endif; ?>
+                <?php if ($_SESSION['userType'] == 2) : ?>
+                <li><a href="index.php?action=admin">Admin fonctions</a></li>
+                <?php endif; ?>
             </ul>
         </div>
     </div>

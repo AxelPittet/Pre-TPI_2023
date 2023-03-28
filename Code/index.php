@@ -2,7 +2,7 @@
 /**
  * author : Axel Pittet
  * project : Pre-TPI 2023 - Res'Tolerances
- * date : 26.03.2023
+ * date : 28.03.2023
  */
 
 session_start();
@@ -43,6 +43,9 @@ if (isset($_GET['action'])) {
             break;
         case 'precedentsOrders' :
             precedentsOrders();
+            break;
+        case 'admin' :
+            admin($_POST);
             break;
         default :
             home();
