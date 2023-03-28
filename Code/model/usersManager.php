@@ -98,3 +98,16 @@ function getUserId($userEmailAddress) {
 
     return $result;
 }
+
+/**
+ * This function is designed to return the values of the users table in the database in an array
+ * @return array|null : get the values of the query result
+ */
+function getUsers(){
+    $getUsersQuery = 'SELECT * FROM users';
+    require_once "model/dbconnector.php";
+    $users = executeQuerySelect($getUsersQuery);
+    return $users;
+}
+    return $result;
+}
