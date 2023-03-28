@@ -266,7 +266,91 @@ function precedentsOrders()
         $orderItems = getOrderItems($_GET['orderId']);
         require "view/precedentOrder.php";
     }
-    } else {
+}
 
+/**
+ * This function is designed to display the right admin menu
+ * @param $adminRequest : contain some $_POST values for the use of CRUD forms
+ * @return void
+ */
+function admin($adminRequest)
+{
+    if (empty($_GET['adminFunction'])) {
+        require "view/admin.php";
+    } else {
+        switch ($_GET['adminFunction']){
+            case 'users' :
+                adminUsers($adminRequest);
+                break;
+            default :
+                break;
+        }
+    }
+}
+
+/**
+ * This function is designed to display the right users CRUD menu / form
+ * @param $adminUserRequest
+ * @return void : contain some $_POST values for the use of users CRUD forms
+ */
+function adminUsers($adminUserRequest){
+    if (empty($_GET['usersFunction'])) {
+        require "view/usersAdmin.php";
+    } else {
+        switch ($_GET['usersFunction']){
+            case 'add' :
+                if (empty($adminUserRequest)){
+                    require "view/addUser.php";
+                } else {
+                    $userFirstName = $adminUserRequest ['inputUserFirstName'];
+                    $userLastName = $adminUserRequest ['inputUserLastName'];
+                    $userPhoneNumber = $adminUserRequest ['inputUserPhoneNumber'];
+                    $userEmailAddress = $adminUserRequest['inputUserEmailAddress'];
+                    $userPsw = $adminUserRequest['inputUserPsw'];
+
+                    require_once "model/usersManager.php";
+                    registerNewAccount($userEmailAddress, $userPsw, $userFirstName, $userLastName, $userPhoneNumber);
+
+                    home();
+                }
+                break;
+            case 'modify' :
+                if (empty($adminUserRequest)) {
+                    require_once "model/usersManager.php";
+                    $users = getUsers();
+                    require "view/modifyUserChoice.php";
+                } else {
+                    if (empty($adminUserRequest['inputUserFirstName'])){
+                        require_once "model/usersManager.php";
+                        $user = getUser($adminUserRequest['inputUserEmailAddress']);
+                        require "view/modifyUser.php";
+                    } else {
+                        $userFirstName = $adminUserRequest ['inputUserFirstName'];
+                        $userLastName = $adminUserRequest ['inputUserLastName'];
+                        $userPhoneNumber = $adminUserRequest ['inputUserPhoneNumber'];
+                        $userEmailAddress = $adminUserRequest['inputUserEmailAddress'];
+                        $userId = $adminUserRequest['inputUserId'];
+
+                        require_once "model/usersManager.php";
+                        if (updateUser($userEmailAddress, $userFirstName, $userLastName, $userPhoneNumber, $userId)){
+                            home();
+                        }
+                    }
+                }
+                break;
+            case 'delete' :
+                require_once "model/usersManager.php";
+                if (empty($adminUserRequest)) {
+                    $users = getUsers();
+                    require "view/deleteUser.php";
+                } else {
+                    if (deleteUser($adminUserRequest['inputUserEmailAddress'])){
+                        home();
+                    }
+                }
+                break;
+            default :
+                break;
+        }
     }
 }
