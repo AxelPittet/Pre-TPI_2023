@@ -1,4 +1,20 @@
 <?php
+/**
+ * Author   : nicolas.glassey@cpnv.ch
+ * Project  : 151_2019_ForStudents
+ * Created  : 05.02.2019 - 18:40
+ *
+ * Last update :    [01.12.2018 author]
+ *                  [add $logName in function setFullPath]
+ * Git source  :    [link]
+ *
+ *
+ * Last saved by :
+ *  Author : Axel Pittet
+ *  Project : Pre-TPI 2023 - Res'Tolerances
+ *  Date : 28.03.2023
+ *
+ */
 
 /**
  * This function is designed to execute a query received as parameter
