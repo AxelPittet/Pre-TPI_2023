@@ -42,8 +42,6 @@ ob_start();
                         require_once "model/ordersManager.php";
                         $orderItems = getOrderItems($orderId['id']);
                         foreach ($orderItems as $orderItem) {
-                            require_once "model/platesManager.php";
-                            $plates = getPlates();
                             foreach ($plates as $plate) {
                                 if ($plate['id'] == $orderItem['plate_id']) {
                                     $orderPrice += ($plate['price'] * $orderItem['quantity']);

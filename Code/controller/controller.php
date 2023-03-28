@@ -248,6 +248,11 @@ function confirmOrder(){
  * @return void
  */
 function precedentsOrders(){
+function precedentsOrders()
+{
+    require_once "model/platesManager.php";
+    $plates = getPlates();
+
     if (empty($_GET['orderId'])) {
         require_once "model/usersManager.php";
         $userId = getUserId($_SESSION['userEmailAddress']);
@@ -255,6 +260,12 @@ function precedentsOrders(){
         $ordersId = getUserOrdersId($userId);
 
         require "view/precedentsOrders.php";
+
+    } else {
+        require_once "model/ordersManager.php";
+        $orderItems = getOrderItems($_GET['orderId']);
+        require "view/precedentOrder.php";
+    }
     } else {
 
     }
