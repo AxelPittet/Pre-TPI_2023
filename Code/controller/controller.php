@@ -2,7 +2,7 @@
 /**
  * author : Axel Pittet
  * project : Pre-TPI 2023 - Res'Tolerances
- * date : 27.03.2023
+ * date : 28.03.2023
  */
 
 
@@ -32,7 +32,6 @@ function home()
  */
 function register($registerRequest)
 {
-//if a register request was submitted
     if (isset($registerRequest['inputUserEmailAddress']) && isset($registerRequest['inputUserPsw']) && isset($registerRequest['inputUserConfirmPsw'])
         && isset($registerRequest['inputUserFirstName']) && isset($registerRequest['inputUserLastName']) && isset($registerRequest['inputUserPhoneNumber'])) {
 
@@ -71,23 +70,21 @@ function register($registerRequest)
  */
 function login($loginRequest)
 {
-//if a login request was submitted
     if (isset($loginRequest['inputUserEmailAddress']) && isset($loginRequest['inputUserPsw'])) {
-        //extract login parameters
         $userEmailAddress = $loginRequest['inputUserEmailAddress'];
         $userPsw = $loginRequest['inputUserPsw'];
-        //try to check if user/psw are matching with the database
         require_once "model/usersManager.php";
         if (isLoginCorrect($userEmailAddress, $userPsw)) {
             $userType = getUserType($userEmailAddress);
             createSession($userEmailAddress, $userType);
-            $_GET['loginError'] = false;
+            $loginErrorMessage = null;
             home();
-        } else { //if the user/psw does not match, login form appears again
-            $_GET['loginError'] = true;
+        } else {
+            $loginErrorMessage = "This combination does not exist";
             require "view/login.php";
         }
-    } else { //the user does not yet fill the form
+    } else {
+        $loginErrorMessage = null;
         require "view/login.php";
     }
 }
@@ -223,7 +220,8 @@ function removeFromCart()
  * This function is designed to confirm an order of a user by saving it in the DB and sending a confirmation mail
  * @return void
  */
-function confirmOrder(){
+function confirmOrder()
+{
     require_once "model/usersManager.php";
     $userId = getUserId($_SESSION['userEmailAddress']);
     require_once "model/ordersManager.php";
@@ -235,9 +233,9 @@ function confirmOrder(){
 
     $msg = "First line of text\nSecond line of text";
 
-    $msg = wordwrap($msg,70);
+    $msg = wordwrap($msg, 70);
 
-    mail($_SESSION['userEmailAddress'],"Confirmation de commande n°$orderId",$msg);
+    mail($_SESSION['userEmailAddress'], "Confirmation de commande n°$orderId", $msg);
 
     unset($_SESSION['cartItem']);
     precedentsOrders();
@@ -247,7 +245,6 @@ function confirmOrder(){
  * This function is designed to display the precedents orders the user has done
  * @return void
  */
-function precedentsOrders(){
 function precedentsOrders()
 {
     require_once "model/platesManager.php";
@@ -258,7 +255,6 @@ function precedentsOrders()
         $userId = getUserId($_SESSION['userEmailAddress']);
         require_once "model/ordersManager.php";
         $ordersId = getUserOrdersId($userId);
-
         require "view/precedentsOrders.php";
 
     } else {
