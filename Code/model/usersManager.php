@@ -109,5 +109,19 @@ function getUsers(){
     $users = executeQuerySelect($getUsersQuery);
     return $users;
 }
+
+/**
+ * This function is designed to return the values of a specific row in the users table in the database
+ * @param $userEmailAddress : must contain the email of the user which we want the informations
+ * @return array|null : get the values of the query result
+ */
+function getUser($userEmailAddress){
+    $strSeparator = '\'';
+    $getUserQuery = 'SELECT * FROM users WHERE email = ' . $strSeparator . $userEmailAddress . $strSeparator;
+    require_once "model/dbconnector.php";
+    $user = executeQuerySelect($getUserQuery);
+    return $user;
+}
+
     return $result;
 }
