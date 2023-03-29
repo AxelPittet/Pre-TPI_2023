@@ -16,11 +16,11 @@ ob_start();
                 <button class="btn btn-primary">Manage users</button>
             </a>
             <div class="divider-vertical"></div>
-            <a href="index.php?action=admin&adminFunction=plates">
+            <a href="index.php?action=admin">
                 <button class="btn btn-primary">Manage plates</button>
             </a>
             <div class="divider-vertical"></div>
-            <a href="index.php?action=admin&adminFunction=intolerances">
+            <a href="index.php?action=admin">
                 <button class="btn btn-primary">Manage intolerances</button>
             </a>
         </div>
