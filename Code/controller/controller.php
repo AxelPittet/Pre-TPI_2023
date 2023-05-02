@@ -5,6 +5,9 @@
  * date : 28.03.2023
  */
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 /**
  * This function is designed to display the "home" view
@@ -231,11 +234,35 @@ function confirmOrder()
         saveOrderContent($_SESSION['cartItem'][$k]['quantity'], $_SESSION['cartItem'][$k]['id'], $orderId);
     }
 
-    $msg = "First line of text\nSecond line of text";
+    require 'PHPMailer\src\Exception.php';
+    require 'PHPMailer\src\PHPMailer.php';
+    require 'PHPMailer\src\SMTP.php';
 
-    $msg = wordwrap($msg, 70);
+    $mail = new PHPMailer(TRUE);
+    try {
+        //Server settings
+        $mail->isSMTP();                                            //Send using SMTP
+        $mail->Host = 'smtp.gmail.com';                     //Set the SMTP server to send through
+        $mail->SMTPAuth = true;                                   //Enable SMTP authentication
+        $mail->Username = 'restolerance.info@gmail.com';                     //SMTP username
+        $mail->Password = 'lqjgdbkpxcbyeeox';                               //SMTP password
+        $mail->SMTPSecure = 'ssl';
+        $mail->Port = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
-    mail($_SESSION['userEmailAddress'], "Confirmation de commande n°$orderId", $msg);
+        //Recipients
+        $mail->setFrom('restolerance.info@gmail.com', 'Restolerance Information');
+        $mail->addAddress($_SESSION['userEmailAddress']);
+
+        //Content
+        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->Subject = "Confirmation de commande numéro : " . $orderId;
+        $mail->Body = "Vous avez commandé : " . $_SESSION['cartItem'][0]['id'] . " " . $_SESSION['cartItem'][0]['quantity'] . "Nombre de fois";
+        $mail->AltBody = "Vous avez commandé : " . $_SESSION['cartItem'][0]['id'] . " " . $_SESSION['cartItem'][0]['quantity'] . "Nombre de fois";
+
+        $mail->send();
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
 
     unset($_SESSION['cartItem']);
     precedentsOrders();
@@ -274,7 +301,7 @@ function admin($adminRequest)
     if (empty($_GET['adminFunction'])) {
         require "view/admin.php";
     } else {
-        switch ($_GET['adminFunction']){
+        switch ($_GET['adminFunction']) {
             case 'users' :
                 adminUsers($adminRequest);
                 break;
@@ -289,13 +316,14 @@ function admin($adminRequest)
  * @param $adminUserRequest
  * @return void : contain some $_POST values for the use of users CRUD forms
  */
-function adminUsers($adminUserRequest){
+function adminUsers($adminUserRequest)
+{
     if (empty($_GET['usersFunction'])) {
         require "view/usersAdmin.php";
     } else {
-        switch ($_GET['usersFunction']){
+        switch ($_GET['usersFunction']) {
             case 'add' :
-                if (empty($adminUserRequest)){
+                if (empty($adminUserRequest)) {
                     require "view/addUser.php";
                 } else {
                     $userFirstName = $adminUserRequest ['inputUserFirstName'];
@@ -316,7 +344,7 @@ function adminUsers($adminUserRequest){
                     $users = getUsers();
                     require "view/modifyUserChoice.php";
                 } else {
-                    if (empty($adminUserRequest['inputUserFirstName'])){
+                    if (empty($adminUserRequest['inputUserFirstName'])) {
                         require_once "model/usersManager.php";
                         $user = getUser($adminUserRequest['inputUserEmailAddress']);
                         require "view/modifyUser.php";
@@ -328,7 +356,7 @@ function adminUsers($adminUserRequest){
                         $userId = $adminUserRequest['inputUserId'];
 
                         require_once "model/usersManager.php";
-                        if (updateUser($userEmailAddress, $userFirstName, $userLastName, $userPhoneNumber, $userId)){
+                        if (updateUser($userEmailAddress, $userFirstName, $userLastName, $userPhoneNumber, $userId)) {
                             home();
                         }
                     }
@@ -340,7 +368,7 @@ function adminUsers($adminUserRequest){
                     $users = getUsers();
                     require "view/deleteUser.php";
                 } else {
-                    if (deleteUser($adminUserRequest['inputUserEmailAddress'])){
+                    if (deleteUser($adminUserRequest['inputUserEmailAddress'])) {
                         home();
                     }
                 }
@@ -349,4 +377,20 @@ function adminUsers($adminUserRequest){
                 break;
         }
     }
+}
+
+
+function search($searchRequest)
+{
+    require_once "model/usersManager.php";
+    if (isset($_SESSION['userEmailAddress'])) {
+        $userId = getUserId($_SESSION['userEmailAddress']);
+    }
+    require_once "model/platesManager.php";
+    $plates = getPlatesResearch($searchRequest['inputResearch']);
+    require_once "model/intolerancesManager.php";
+    $userIntolerances = getUserIntolerances($userId);
+    $platesIntolerances = getPlatesIntolerances();
+
+    require "view/search.php";
 }

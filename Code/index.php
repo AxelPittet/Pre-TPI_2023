@@ -47,6 +47,9 @@ if (isset($_GET['action'])) {
         case 'admin' :
             admin($_POST);
             break;
+        case 'search' :
+            search($_POST);
+            break;
         default :
             home();
     }

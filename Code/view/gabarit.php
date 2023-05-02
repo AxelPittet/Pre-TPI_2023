@@ -27,13 +27,17 @@
         </div>
         <div class="flex-none">
             <ul class="menu menu-horizontal px-1">
-                <?php if (isset($_SESSION['userEmailAddress'])) : ?>
-                <!-- Not implemented>
-                    <li>
+                <li>
+                    <form action="index.php?action=search" method="post">
                         <div class="form-control">
-                            <input type="text" placeholder="Search" class="input input-bordered"/>
+                            <input type="text" placeholder="Enter your research here" name="inputResearch" required class="input input-bordered"/>
                         </div>
-                    </li> -->
+                        <div class="form-control">
+                            <input type="submit" value="Search" class="btn btn-primary"/>
+                        </div>
+                    </form>
+                </li>
+                <?php if (isset($_SESSION['userEmailAddress'])) : ?>
                     <li tabindex="1">
                         <a href="index.php?action=intolerances">
                             <label tabindex="0" class="btn btn-ghost btn-circle avatar">
@@ -57,7 +61,7 @@
                     <li><a href="index.php?action=register">Register</a></li>
                 <?php endif; ?>
                 <?php if ($_SESSION['userType'] == 2) : ?>
-                <li><a href="index.php?action=admin">Admin fonctions</a></li>
+                    <li><a href="index.php?action=admin">Admin fonctions</a></li>
                 <?php endif; ?>
             </ul>
         </div>

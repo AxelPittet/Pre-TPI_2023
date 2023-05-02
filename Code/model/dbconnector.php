@@ -69,7 +69,7 @@ function openDBConnexion()
     $charset = 'utf8';
     $dbName = 'restolerance';
     $userName = 'root';
-    $userPwd = '';
+    $userPwd = '/Z8rl2m0/';
     $dsn = $sqlDriver . ':host=' . $hostname . ';dbname=' . $dbName . ';port=' . $port . ';charset=' . $charset;
 
     try {

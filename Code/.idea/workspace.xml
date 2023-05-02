@@ -10,7 +10,8 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/PHPMailer/composer.json</pharConfigPath>
     <execution />
   </component>
   <component name="Git.Settings">
@@ -80,6 +81,10 @@
       <workItem from="1679897252174" duration="9052000" />
       <workItem from="1679986697479" duration="9121000" />
       <workItem from="1680110085141" duration="1862000" />
+      <workItem from="1680255717451" duration="1250000" />
+      <workItem from="1682668651827" duration="6700000" />
+      <workItem from="1682681782686" duration="2244000" />
+      <workItem from="1682921069828" duration="4920000" />
     </task>
     <servers />
   </component>

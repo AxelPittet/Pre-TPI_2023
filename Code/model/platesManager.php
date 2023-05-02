@@ -26,3 +26,11 @@ function getSpecificPlate($plateId)
     $specificPlate = executeQuerySelect($getSpecificPlateId);
     return $specificPlate;
 }
+
+
+function getPlatesResearch($plateResearch){
+    $getPlatesResearchQuery = "SELECT * FROM plates WHERE name LIKE '%$plateResearch%'";
+    require_once "model/dbconnector.php";
+    $platesResearch = executeQuerySelect($getPlatesResearchQuery);
+    return $platesResearch;
+}
